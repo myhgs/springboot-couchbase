@@ -8,13 +8,14 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@RequiredArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResponseVO<T> {
 
     private String resCode;
     private String resMsg;
-    @NonNull
     private T data;
 
+    public ResponseVO(T data) {
+        this.data = data;
+    }
 }

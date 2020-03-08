@@ -14,5 +14,9 @@ public interface MemberService {
 
     ResponseVO<Member> getMemberDetail(int memNo);
 
+    ResponseVO<Object> removeMember(int memNo);
+
+    ResponseVO<Member> modifyMember(Member member);
+
 
 }

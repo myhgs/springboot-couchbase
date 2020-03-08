@@ -4,7 +4,6 @@ import my.app.couch.model.Member;
 import my.app.couch.model.ResponseVO;
 import my.app.couch.model.code.CommonConst;
 import my.app.couch.service.member.MemberService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,18 +20,28 @@ public class MemberController {
     }
 
     @GetMapping("")
-    public ResponseVO<Member> getMember(){
+    public ResponseVO<Member> getMemberController(){
         return memberService.getMember();
     }
 
     @GetMapping("/{memNo}")
-    public ResponseVO<Member> getMemberDetail(@PathVariable(value = "memNo") int memNo){
+    public ResponseVO<Member> getMemberDetailController(@PathVariable(value = "memNo") int memNo){
         return memberService.getMemberDetail(memNo);
     }
 
-    @PostMapping
-    public ResponseVO<Member> createMember(@RequestBody Member member){
+    @PostMapping("")
+    public ResponseVO<Member> createMemberController(@RequestBody Member member){
         return memberService.createMember(member);
+    }
+
+    @PutMapping("")
+    public ResponseVO<Member> modifyMemberController(@RequestBody Member member){
+        return memberService.modifyMember(member);
+    }
+
+    @DeleteMapping("/{memNo}")
+    public ResponseVO<Object> removeMemberController(@PathVariable(value = "memNo") int memNo){
+        return memberService.removeMember(memNo);
     }
 
 }

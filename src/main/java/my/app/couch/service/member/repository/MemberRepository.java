@@ -1,4 +1,4 @@
-package my.app.couch.service.member;
+package my.app.couch.service.member.repository;
 
 import my.app.couch.model.Member;
 import org.springframework.data.couchbase.core.query.N1qlPrimaryIndexed;

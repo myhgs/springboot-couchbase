@@ -21,19 +21,19 @@ public class LogAspect {
 
     private static final Logger LOG = LoggerFactory.getLogger(AccessInterceptor.class);
 
-//    @Around("execution(* my.app.couch.service.member.MemberService.*(..))")
-//    public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
-//        LOG.info("START :: == "+joinPoint.getSignature().getDeclaringTypeName()+" / "+joinPoint.getSignature().getName());
-//        Object result = joinPoint.proceed();
-//        Optional<String> paramString = Optional.ofNullable(objectString(joinPoint.getArgs()));
-//        paramString.ifPresent(data -> LOG.debug("PARAMETER :: "+data));
-//        LOG.info("END :: == "+joinPoint.getSignature().getDeclaringTypeName()+" / "+joinPoint.getSignature().getName());
-//        return result;
-//    }
-//
-//    public String objectString(Object[] args) throws JsonProcessingException {
-//        ObjectMapper obj = new ObjectMapper();
-//        String result = obj.writeValueAsString(args);
-//        return result;
-//    }
+    @Around("execution(* my.app.couch.service.member.MemberService.*(..))")
+    public Object logging(ProceedingJoinPoint joinPoint) throws Throwable {
+        LOG.info("START :: == "+joinPoint.getSignature().getDeclaringTypeName()+" / "+joinPoint.getSignature().getName());
+        Object result = joinPoint.proceed();
+        Optional<String> paramString = Optional.ofNullable(objectString(joinPoint.getArgs()));
+        paramString.ifPresent(data -> LOG.debug("PARAMETER :: "+data));
+        LOG.info("END :: == "+joinPoint.getSignature().getDeclaringTypeName()+" / "+joinPoint.getSignature().getName());
+        return result;
+    }
+
+    public String objectString(Object[] args) throws JsonProcessingException {
+        ObjectMapper obj = new ObjectMapper();
+        String result = obj.writeValueAsString(args);
+        return result;
+    }
 }

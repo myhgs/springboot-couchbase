@@ -2,6 +2,7 @@ package my.app.couch.service.member;
 
 import my.app.couch.model.Member;
 import my.app.couch.model.ResponseVO;
+import my.app.couch.service.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 /**
@@ -32,5 +33,17 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public ResponseVO<Member> getMemberDetail(int memNo) {
         return new ResponseVO(memberRepository.findById(memNo).get());
+    }
+
+    @Override
+    public ResponseVO<Object> removeMember(int memNo) {
+        memberRepository.deleteById(memNo);
+        return ResponseVO.builder().resCode("200").resMsg("Success").build();
+    }
+
+    @Override
+    public ResponseVO<Member> modifyMember(Member member) {
+        memberRepository.save(member);
+        return new ResponseVO(member);
     }
 }
